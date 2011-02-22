@@ -47,6 +47,9 @@ do
 
 	#replace space with underscore if needed.
 	replace_space_with_underscore $lc
+
+	#process the internal of the file, make that lowercase too.
+	/usr/bin/perl uc2lc.pl $lc $1
 done
 
 IFS=$SAVEIFS

@@ -7,6 +7,11 @@ use XML::LibXML;
 my $xml_fname = shift;
 my $imp_version = shift;
 
+# verify that this is a configuration file (xml extension)
+if ( not $xml_fname =~ m/\.xml$/ ){
+	exit(0);
+}
+
 # parse the configuration file.
 my $parser = XML::LibXML->new();
 my $doc = $parser->parse_file($xml_fname);
