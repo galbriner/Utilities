@@ -8,7 +8,7 @@ my $xml_fname = shift;
 my $imp_version = shift;
 
 # verify that this is a configuration file (xml extension)
-if ( not $xml_fname =~ m/\.xml$/ ){
+if ( not $xml_fname =~ m/\.xml$/i ){
 	exit(0);
 }
 
@@ -29,8 +29,7 @@ sub proc_node {
 	# 3. replace spaces with underscore.
 	if ( $node->nodeType eq &XML_TEXT_NODE ){
 		my $text = $node->data;
-		#if ( $text =~ m/^d:\\infogin\\/ ){ # it is a configuration file if it start with "d:\infogin\"
-		if ( $text =~ m/^d:\\.*/ ){ # it is a configuration file if it start with "d:\infogin\"
+		if ( $text =~ m/^d:\\infogin\\/i ){ # it is a configuration file if it start with "d:\infogin\"
 			$text =~ tr/A-Z \\/a-z_\//;
 			$node->setData($text);
 		}	

@@ -30,7 +30,15 @@ do
 		fi
 
 		#replace space with underscore if needed.
-		replace_space_with_underscore $lc
+		first=${lc/" "*/}
+		if [ $first != $lc ]
+		then
+			second=${lc/*" "/}
+			new_name="${first}_${second}"
+			mv $lc $new_name
+			lc=$new_name
+		fi
+		#replace_space_with_underscore $lc
 	done
 done
 
@@ -46,7 +54,15 @@ do
 	fi
 
 	#replace space with underscore if needed.
-	replace_space_with_underscore $lc
+	first=${lc/" "*/}
+	if [ $first != $lc ]
+	then
+		second=${lc/*" "/}
+		new_name="${first}_${second}"
+		mv $lc $new_name
+		lc=$new_name
+	fi
+	#replace_space_with_underscore $lc
 
 	#process the internal of the file, make that lowercase too.
 	/usr/bin/perl uc2lc.pl $lc $1
